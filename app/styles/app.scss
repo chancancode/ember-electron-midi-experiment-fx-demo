@@ -1,0 +1,67 @@
+body {
+  font-size: 9px;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.midi-fx {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  overflow: hidden;
+
+  h1 {
+    margin: 0px 0px 10px;
+  }
+}
+
+.midi-monitor {
+  .keyboard {
+    width: 1000px;
+    height: 40px;
+
+    .key {
+      float: left;
+      position: relative;
+      width: 10px;
+      height: 30px;
+      border: 1px solid black;
+      margin-right: -1px;
+      margin-bottom: 10px;
+
+      .name {
+        position: absolute;
+        left: -5px;
+        right: -5px;
+        bottom: -10px;
+        font-size: 8px;
+        text-align: center;
+        color: white;
+      }
+    }
+
+    .key.black {
+      background: black;
+      width: 7px;
+      height: 20px;
+      z-index: 1;
+      margin: 0px -4px 0px -3px;
+
+      .name {
+        bottom: auto;
+        top: -10px;
+      }
+    }
+
+    .key.on {
+      background: yellow;
+
+      .name {
+        color: black;
+      }
+    }
+  }
+}

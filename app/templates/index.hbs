@@ -1,0 +1,50 @@
+{{#midi-device port=0 as |keyboard|}}
+
+  <h1>Input</h1>
+
+  {{midi-monitor input=keyboard.in}}
+
+  {{#midi-bus name="Internal Main" as |main|}}
+
+    <h1>Lower</h1>
+
+    {{#midi-bus name="Internal Lower 1" as |lower1|}}
+    {{#midi-bus name="Internal Lower 2" as |lower2|}}
+
+      {{midi-layer input=keyboard.in output=lower1.out highKey=48}}
+
+      {{midi-auto-hold input=lower1.in output=lower2.out}}
+
+      {{midi-octave input=lower2.in output=main.out low=true}}
+
+    {{/midi-bus}}
+    {{/midi-bus}}
+
+    <h1>Upper</h1>
+
+    {{#midi-bus name="Internal Upper 1" as |upper1|}}
+    {{#midi-bus name="Internal Upper 2" as |upper2|}}
+
+      {{midi-layer input=keyboard.in output=upper1.out lowKey=49}}
+
+      {{midi-auto-pedal input=upper1.in output=upper2.out}}
+
+      {{midi-octave input=upper2.in output=main.out low=true high=true}}
+
+    {{/midi-bus}}
+    {{/midi-bus}}
+
+    <h1>Global</h1>
+
+    {{#midi-bus name="Ember MIDI" as |global|}}
+
+      {{midi-transpose input=main.in output=global.out value=2}}
+
+      {{midi-monitor input=global.in}}
+
+      {{midi-panic output=global.out}}
+
+    {{/midi-bus}}
+
+  {{/midi-bus}}
+{{/midi-device}}

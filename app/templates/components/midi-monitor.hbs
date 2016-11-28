@@ -1,0 +1,7 @@
+<h1>MIDI Monitor</h1>
+
+<div class="keyboard">
+  {{#each keys as |key|}}
+    <div class="key {{if key.isBlackKey 'black'}} {{if key.isOn 'on'}}"><span class="name">{{key.name}}</span></div>
+  {{/each}}
+</div>
